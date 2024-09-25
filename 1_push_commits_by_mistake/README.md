@@ -35,7 +35,7 @@ https://github.com/WATA-Haru/yarakashi_git_matome/tree/main/1_push_commits_by_mi
 
 ```git log --oneline branchName```でわかりやすく表示しよう   
 
-```git cherry-pick commitA commitB commitC```でcommit復活。untrackedは鰓０になるので気を付けよう
+```git cherry-pick commitA commitB commitC```でcommit復活。untrackedのファイルがあるとerrorになるので気を付けよう
 
 ## やらかし再現
 ### 下準備
