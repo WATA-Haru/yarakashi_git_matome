@@ -1,5 +1,12 @@
+# replay.sh
+1. 使用する場合は空のディレクトリを用意
+2. ```replay.sh```だけ移動
+3. ```bash replay.sh```で実行される
+
+
+# 詳細なまとめ
 ## やったこと
-review回のdevelopに直接pushしてしまいました。(push済み)
+review回のdevelopに直接pushしてしまいました。(push済み)   
 間違ったcommitを取り消し、新しいbranchを切ってそこでpushします。
 
 **これを**
@@ -8,10 +15,11 @@ review回のdevelopに直接pushしてしまいました。(push済み)
 **こうします**
 ![](./after.png)
 
-ついでに取り消したcommitを自分のbranchで再度commitしなおしてpushします。
+ついでに取り消したcommitを自分のbranchで再度commitしなおしてpushします。   
+ここで```cherry-pick```を使用します。
 
 ## TL;DR
-ここにreplay.sh(再現するやつ)上げています。
+ここに```replay.sh```(再現するやつ)上げています。
 https://github.com/WATA-Haru/yarakashi_git_matome/tree/main/1_push_commits_by_mistake
 
 1. git revertでcommitを(歴史を書き換えずに)すべて取り消す
@@ -19,19 +27,21 @@ https://github.com/WATA-Haru/yarakashi_git_matome/tree/main/1_push_commits_by_mi
 2. あたらしいbranchを作成する
 3. git cherry-pickで本来積むはずだったcommitを取得して積む
    ```git cherry-pick commit1 commit2 commit3```
+
 ### キーワード
-```bash
-git revert {commit}...{commit}
-git log --oneline branch
-git fetch origin branch
-git switch branch
-git cherry-pick commitA commitB commitC
-```
+```git revert {commit}...{commit}```で期間を指定してRevertできる。ただし、指定するcommitは1個前!
+  - ```git revert HEAD~N```なら1個前にしなくてok!
+  - ```git revert --continue```, ```git revert --abort```, ```git revert --quit```がある。
+
+```git log --oneline branchName```でわかりやすく表示しよう   
+
+```git cherry-pick commitA commitB commitC```でcommit復活。untrackedは鰓０になるので気を付けよう
 
 ## やらかし再現
 ### 下準備
 git の環境を作成します。
-commitを積み増す。次に、取り消す予定のcommitを4つ積みます。
+commitを積みます。次に、取り消す予定のcommitを4つ積みます。
+
 ```bash
 # initialize and rename branch
 git init
@@ -52,7 +62,6 @@ git commit file1 -m "revertMe! 1"
 git commit file2 -m "revertMe! 2"
 git commit file3 -m "revertMe! 3"
 git commit file4 -m "revertMe! 4"
-
 ```
 
 #### 結果
