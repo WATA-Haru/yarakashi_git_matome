@@ -10,10 +10,10 @@ review回のdevelopに直接pushしてしまいました。(push済み)
 間違ったcommitを取り消し、新しいbranchを切ってそこでpushします。
 
 #### これを
-<img src="before.png" alt="before image" width="200px" />
+<img src="before.png" alt="before image" width="400px" />
 
 #### こうします。
-<img src="after.png" alt="after image" width="200px" />
+<img src="after.png" alt="after image" width="400px" />
 
 ついでに取り消したcommitを自分のbranchで再度commitしなおしてpushします。
 
